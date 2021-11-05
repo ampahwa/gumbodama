@@ -6,14 +6,14 @@ Gradually, we will fill in actual calls to our datastore.
 
 
 import json
-# import os
+import os
 
 # Errors
 NOT_FOUND = 1
 DUPLICATE = 2
 
-# DEMO_HOME = os.environ["DEMO_HOME"]  Need to create environment var
-SOUP_DB = "/mnt/c/Users/apahw/gumbodama/db/soup.json"
+DEMO_HOME = os.environ["DEMO_HOME"]
+SOUP_DB = f"{DEMO_HOME}/db/soup.json"
 
 
 def write_soup(soup):  # Write to soup db
