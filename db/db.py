@@ -5,8 +5,40 @@ Gradually, we will fill in actual calls to our datastore.
 """
 
 
-def fetch_pets():
+import json
+# import os
+
+# Errors
+NOT_FOUND = 1
+DUPLICATE = 2
+
+# DEMO_HOME = os.environ["DEMO_HOME"]  Need to create environment var
+SOUP_DB = "/mnt/c/Users/apahw/gumbodama/db/soup.json"
+
+
+def write_soup(soup):  # Write to soup db
+    with open(SOUP_DB, 'w') as f:
+        json.dump(soup, f, indent=4)
+
+
+def get_soup():
     """
-    A function to return all pets in the data store.
+    A function to return all soup inventory.
     """
-    return {"tigers": 2, "lions": 3, "zebras": 1}
+    try:
+        with open(SOUP_DB) as file:
+            return json.loads(file.read())
+    except FileNotFoundError:
+        return None
+
+
+def add_soup(soupname, soupdescr):  # Add a soup to the inventory
+    soup = get_soup
+    if soup is None:
+        return NOT_FOUND
+    elif soupname in soup:
+        return DUPLICATE
+    else:
+        soup[soupname] = {"Inventory": 0, "Descr": soupdescr}
+        write_soup(soup)
+        return 0

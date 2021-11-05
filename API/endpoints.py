@@ -39,13 +39,13 @@ class Endpoints(Resource):
         return {"Available endpoints": endpoints}
 
 
-@api.route('/pets')
-class Pets(Resource):
+@api.route('/soup')
+class OSoup(Resource):
     """
-    This class supports fetching a list of all pets.
+    This class supports fetching a list of all outbound soup.
     """
     def get(self):
         """
-        This method returns all pets.
+        This method returns all outbound soup.
         """
-        return db.fetch_pets()
+        return db.get_soup()
