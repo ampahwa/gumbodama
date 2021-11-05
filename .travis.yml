@@ -6,7 +6,7 @@ install:
     - pip install -r requirements-dev.txt
 
 env:
-    - DEMO_HOME=$HOME
+    - DEMO_HOME="$HOME/build/ampahwa"
 
 script:
     - make tests

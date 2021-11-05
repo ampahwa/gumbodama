@@ -13,7 +13,7 @@ NOT_FOUND = 1
 DUPLICATE = 2
 
 DEMO_HOME = os.environ["DEMO_HOME"]
-SOUP_DB = f"{DEMO_HOME}/db/soup.json"
+SOUP_DB = f"{DEMO_HOME}/gumbodama/db/soup.json"
 
 
 def write_soup(soup):  # Write to soup db
@@ -27,6 +27,7 @@ def get_soup():
     """
     try:
         with open(SOUP_DB) as file:
+            print("HELLO")
             return json.loads(file.read())
     except FileNotFoundError:
         return None
