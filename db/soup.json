@@ -1,0 +1,4 @@
+{
+    "Chicken Noodle": {"Inventory": 300, "descr": "Hearty"},
+    "Broccoli Cheddar": {"Inventory": 200, "decr": "Decadent"}
+}
