@@ -21,3 +21,4 @@ You can get all the available soups by using the /soup endpoint\
 You can add a soup to sell by using the /add_soup endpoint\
 You can purchase a soup with the /purchase_soup endpoint\
 You can add a review for a soup with /post_review endpoint and providing a soup id
+
