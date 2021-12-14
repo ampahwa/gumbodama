@@ -3,9 +3,11 @@ This is the file containing all of the endpoints for our flask app.
 The endpoint called `endpoints` will return all available endpoints.
 """
 
+from http import HTTPStatus
 from flask import Flask
 from flask_restx import Resource, Api
 import db.db as db
+import werkzeug.exceptions as wz
 
 app = Flask(__name__)
 api = Api(app)
@@ -49,3 +51,12 @@ class OSoup(Resource):
         This method returns all outbound soup.
         """
         return db.get_soup()
+
+@api.route('/add_soup/<soupname>')
+class AddSoup(Resource): # Supports adding soup 
+    def post(self, soupname): # Add soup to soup database
+        ret = db.add_soup(soupname)
+        if ret == db.NOT_FOUND:
+            raise (wz.NotFound("Soup db not found."))
+        elif ret == db.DUPLICATE:
+            raise (wz.NotAcceptable("Soup already added"))

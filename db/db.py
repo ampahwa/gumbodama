@@ -27,19 +27,18 @@ def get_soup():
     """
     try:
         with open(SOUP_DB) as file:
-            print("HELLO")
             return json.loads(file.read())
     except FileNotFoundError:
         return None
 
 
-def add_soup(soupname, soupdescr):  # Add a soup to the inventory
+def add_soup(soupname):  # Add a soup to the inventory
     soup = get_soup
     if soup is None:
         return NOT_FOUND
     elif soupname in soup:
         return DUPLICATE
     else:
-        soup[soupname] = {"Inventory": 0, "Descr": soupdescr}
+        soup[soupname] = {"Inventory": 0}
         write_soup(soup)
         return 0
