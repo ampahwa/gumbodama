@@ -1,3 +1,7 @@
+name: Push Container to Heroku
+
+on: [push]
+
 jobs:
   heroku-deploy:
     runs-on: ubuntu-latest
