@@ -1,5 +1,5 @@
 flask
 flask-restx
-werkzeurg
+werkzeug
 gunicorn
 pymongo[srv]
