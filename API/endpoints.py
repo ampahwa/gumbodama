@@ -52,7 +52,7 @@ class OSoup(Resource):
         """
         return db.get_soup()
 
-"""
+
 @api.route('/add_soup/<soupname>')
 class AddSoup(Resource): # Supports adding soup 
     def post(self, soupname): # Add soup to soup database
@@ -61,4 +61,3 @@ class AddSoup(Resource): # Supports adding soup
             raise (wz.NotFound("Soup db not found."))
         elif ret == db.DUPLICATE:
             raise (wz.NotAcceptable("Soup already added"))
-"""
