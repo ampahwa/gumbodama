@@ -61,3 +61,52 @@ class AddSoup(Resource): # Supports adding soup
             raise (wz.NotFound("Soup db not found."))
         elif ret == db.DUPLICATE:
             raise (wz.NotAcceptable("Soup already added"))
+            
+
+@api.route('/delete_soup/<soupname>')
+class DeleteSoup(Resource):
+    def post(self, soupname):
+        """
+        This method deletes a room from the room db.
+        """
+        ret = db.delete_soup(soupname)
+        if ret == db.NOT_FOUND:
+            raise (wz.NotFound(f"Soup {soupname} not found."))
+        else:
+            return f"{soupname} deleted."
+            
+@api.route('/add_user/<username>')
+class AddUser(Resource): # Supports adding soup
+    def post(self, username): # Add soup to soup database
+        ret = db.add_user(username)
+        if ret == db.NOT_FOUND:
+            raise (wz.NotFound("user db not found."))
+        elif ret == db.DUPLICATE:
+            raise (wz.NotAcceptable("User already added"))
+            
+
+@api.route('/delete_user/<username>')
+class DeleteUser(Resource):
+    def post(self, username):
+        """
+        This method deletes a room from the room db.
+        """
+        ret = db.delete_user(username)
+        if ret == db.NOT_FOUND:
+            raise (wz.NotFound(f"User {username} not found."))
+        else:
+            return f"{username} deleted."
+
+"""
+@api.route('/change_soupname/<soupname>')
+class ChangeSoup(Resource):
+    def post(self, soupname, newsoupname):
+        """
+        #This method deletes a room from the room db.
+        """
+        ret = db.delete_soup(soupname)
+        if ret == db.NOT_FOUND:
+            raise (wz.NotFound(f"Soup {soupname} not found."))
+        else:
+            return f"{soupname} deleted."
+"""
