@@ -6,8 +6,9 @@ The endpoint called `endpoints` will return all available endpoints.
 from http import HTTPStatus
 from flask import Flask
 from flask_restx import Resource, Api
-import db.db as db
 import werkzeug.exceptions as wz
+
+import db.data as db
 
 app = Flask(__name__)
 api = Api(app)
@@ -61,19 +62,22 @@ class AddSoup(Resource): # Supports adding soup
             raise (wz.NotFound("Soup db not found."))
         elif ret == db.DUPLICATE:
             raise (wz.NotAcceptable("Soup already added"))
+        else:
+            return (f"{soupname} added")
+            # return db.get_soup
             
 
 @api.route('/delete_soup/<soupname>')
 class DeleteSoup(Resource):
     def post(self, soupname):
-        """
-        This method deletes a room from the room db.
-        """
-        ret = db.delete_soup(soupname)
+        # This method deletes a soup from the soup db.
+        ret = db.del_soup(soupname)
         if ret == db.NOT_FOUND:
             raise (wz.NotFound(f"Soup {soupname} not found."))
         else:
             return f"{soupname} deleted."
+
+"""
             
 @api.route('/add_user/<username>')
 class AddUser(Resource): # Supports adding soup
@@ -88,22 +92,18 @@ class AddUser(Resource): # Supports adding soup
 @api.route('/delete_user/<username>')
 class DeleteUser(Resource):
     def post(self, username):
-        """
-        This method deletes a room from the room db.
-        """
+        # This method deletes a room from the room db.
         ret = db.delete_user(username)
         if ret == db.NOT_FOUND:
             raise (wz.NotFound(f"User {username} not found."))
         else:
             return f"{username} deleted."
 
-"""
+
 @api.route('/change_soupname/<soupname>')
 class ChangeSoup(Resource):
     def post(self, soupname, newsoupname):
-        """
-        #This method deletes a room from the room db.
-        """
+         # This method deletes a room from the room db.
         ret = db.delete_soup(soupname)
         if ret == db.NOT_FOUND:
             raise (wz.NotFound(f"Soup {soupname} not found."))
