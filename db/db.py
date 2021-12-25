@@ -4,7 +4,6 @@ At first, it will just contain stubs that return fake data.
 Gradually, we will fill in actual calls to our datastore.
 """
 
-
 import json
 import os
 
@@ -12,9 +11,9 @@ import os
 NOT_FOUND = 1
 DUPLICATE = 2
 
-DEMO_HOME = os.environ["DEMO_HOME"]
-SOUP_DB = f"{DEMO_HOME}/gumbodama/db/soup.json"
-USERS_DB = f"{DEMO_HOME}/gumbodama/db/users.json" # HAVE NOT MADE THE USERS.JSON YET
+HOME = os.environ["HOME"]
+SOUP_DB = f"{HOME}/gumbodama/db/soup.json"
+USERS_DB = f"{HOME}/gumbodama/db/users.json" # HAVE NOT MADE THE USERS.JSON YET
 
 
 def write_soup(soup):  # Write to soup db
@@ -41,7 +40,7 @@ def get_users():
     A function to return users database.
     """
     try:
-        with open(USER_DB) as file:
+        with open(USERS_DB) as file:
             return json.loads(file.read())
     except FileNotFoundError:
         return None
@@ -65,7 +64,8 @@ def delete_soup(soupname):
     soup = get_soup
     if soup is None:
         return NOT_FOUND
-    elif soupname not in soup
+    elif soupname not in soup:
+        return 
     else:
         del soup[soupname]
         write_soup(soup)
@@ -79,7 +79,7 @@ def add_user(username):  # Add a soup to the inventory
     elif username in users:
         return DUPLICATE
     else:
-        user[username] = {"Loves Soup?": 1}
+        users[username] = {"Loves Soup?": 1}
         write_soup(users)
         return 0
 

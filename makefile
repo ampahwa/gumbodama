@@ -18,7 +18,7 @@ github: FORCE
 tests: lint unit
 
 unit: FORCE
-	cd $(API_DIR); $(TESTFINDER) --with-coverage
+	cd $(DB_DIR); $(TESTFINDER) --with-coverage
 
 lint: FORCE
 	$(LINTER) $(API_DIR)/*.py
