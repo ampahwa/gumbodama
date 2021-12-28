@@ -25,6 +25,11 @@ def get_soup():
     """
     return dbc.fetch_all(SOUPS, SOUP_NM)
 
+def get_user():
+    """
+    A function to return a dictionary of all users.
+    """
+    return dbc.fetch_all(USERS, USER_NM)
 
 def soup_exists(soupname):
     """
