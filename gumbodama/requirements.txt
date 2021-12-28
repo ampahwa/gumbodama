@@ -1,5 +1,0 @@
-flask
-flask-restx
-werkzeug
-gunicorn
-pymongo[srv]
