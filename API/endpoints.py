@@ -1,4 +1,4 @@
-"""
+""""
 This is the file containing all of the endpoints for our flask app.
 The endpoint called `endpoints` will return all available endpoints.
 """
@@ -77,7 +77,7 @@ class DeleteSoup(Resource):
         else:
             return f"{soupname} deleted."
 
-"""
+
             
 @api.route('/add_user/<username>')
 class AddUser(Resource): # Supports adding soup
@@ -93,20 +93,19 @@ class AddUser(Resource): # Supports adding soup
 class DeleteUser(Resource):
     def post(self, username):
         # This method deletes a room from the room db.
-        ret = db.delete_user(username)
+        ret = db.del_user(username)
         if ret == db.NOT_FOUND:
             raise (wz.NotFound(f"User {username} not found."))
         else:
             return f"{username} deleted."
 
 
-@api.route('/change_soupname/<soupname>')
-class ChangeSoup(Resource):
-    def post(self, soupname, newsoupname):
-         # This method deletes a room from the room db.
-        ret = db.delete_soup(soupname)
+@api.route('/change_username/<username>')
+class ChangeUserName(Resource):
+    def post(self, username, new_username):
+        
+        ret = db.change_user_username(username, new_username)
         if ret == db.NOT_FOUND:
             raise (wz.NotFound(f"Soup {soupname} not found."))
         else:
             return f"{soupname} deleted."
-"""

@@ -1,4 +1,3 @@
-
 import db.db_connect as dbc
 
 SOUPS = "soups"
@@ -85,6 +84,7 @@ def add_user(username):
     Until we are using a real DB, we have a potential
     race condition here.
     """
+    print(f"{username=}")
     if user_exists(username):
         return DUPLICATE
     else:
@@ -100,4 +100,18 @@ def del_user(username):
         return NOT_FOUND
     else:
         dbc.del_one(USERS, filters={USER_NM: username})
+        return OK
+
+
+def change_user_username(username, new_username):
+    """
+    change user's username to new username in db
+    -currently INCORRECTLY done by adding new username and deleting old one
+    - will be modified to instead use mongo's update()
+    """
+    if not user_exists(username):
+        return NOT_FOUND
+    else:
+        dbc.insert_doc(USERS, {USER_NM: new_username})
+        dbc.del_one(USERS,filters={USER_NM: username})
         return OK
