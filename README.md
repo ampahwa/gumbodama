@@ -23,3 +23,12 @@ You can get all the available soups by using the /soup endpoint\
 You can add a soup by using the /add_soup endpoint\
 You can delete a soup by using the /delete_soup endpoint\
 You can add a review for a soup with /post_review endpoint and providing a soup id (not added yet)
+
+## Completed
+Six enpoints with tests\
+Updated Kanban board\
+CI/CD deployment with Github actions\
+MongoDB set with remotel access on Heroku
+
+
+
