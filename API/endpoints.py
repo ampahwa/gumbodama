@@ -75,7 +75,6 @@ class DeleteSoup(Resource):
         else:
             return f"{soupname} deleted."
  
- 
             
 @api.route('/add_user/<username>')
 class AddUser(Resource): # Supports adding soup
@@ -85,6 +84,8 @@ class AddUser(Resource): # Supports adding soup
             raise (wz.NotFound("user db not found."))
         elif ret == db.DUPLICATE:
             raise (wz.NotAcceptable("User already added"))
+        else:
+            return f"{username} added."
             
  
 @api.route('/delete_user/<username>')
