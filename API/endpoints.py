@@ -62,6 +62,8 @@ class AddSoup(Resource): # Supports adding soup
             raise (wz.NotFound("Soup db not found."))
         elif ret == db.DUPLICATE:
             raise (wz.NotAcceptable("Soup already added"))
+        else:
+            return f"{soupname} added."
  
  
 @api.route('/delete_soup/<soupname>')

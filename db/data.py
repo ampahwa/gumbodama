@@ -24,7 +24,12 @@ def get_soup():
     A function to return a dictionary of all soups.
     """
     return dbc.fetch_all(SOUPS, SOUP_NM)
- 
+
+def get_users():
+    """
+    A function to return a dictionary of all users.
+    """
+    return dbc.fetch_all(USERS, USER_NM)
  
 def soup_exists(soupname):
     """
@@ -57,6 +62,19 @@ def add_soup(soupname):
     else:
         dbc.insert_doc(SOUPS, {SOUP_NM: soupname, "Inventory": 0, "Desc:": ""})
         return OK
+
+def add_user(username):
+    """
+    Add a user to the user database.
+    Until we are using a real DB, we have a potential
+    race condition here.
+    """
+    print(f"{username=}")
+    if user_exists(username):
+        return DUPLICATE
+    else:
+        dbc.insert_doc(USERS, {USER_NM: username, "soups": ""})
+        return OK
  
  
 def user_exists(username):
@@ -67,14 +85,6 @@ def user_exists(username):
     rec = dbc.fetch_one(USERS, filters={USER_NM: username})
     print(f"{rec=}")
     return rec is not None
- 
- 
-def get_users():
-    """
-    A function to return a dictionary of all users.
-    """
-    return dbc.fetch_all(USERS, USER_NM)
- 
  
 def add_user(username):
     """
