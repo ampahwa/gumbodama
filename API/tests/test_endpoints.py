@@ -16,11 +16,13 @@ class EndpointTestCase(TestCase):
  
     def tearDown(self):
         pass
- 
+
+    """ 
     def test_hello(self):
         hello = ep.HelloWorld(Resource)
         ret = hello.get()
         self.assertIsInstance(ret, dict)
+    """
  
     def test_soup(self):
         """
@@ -60,7 +62,7 @@ class EndpointTestCase(TestCase):
         newSoup = new_entity_name("soup")
         ds = ep.DeleteSoup(Resource)
         db.add_soup(newSoup)
-        ds.post(newSoup)
+        ds.delete(newSoup)
         soups = db.get_soup()
         self.assertNotIn(newSoup, soups)
            
@@ -71,10 +73,24 @@ class EndpointTestCase(TestCase):
         newSoup = new_entity_name("soup")
         ds = ep.DeleteSoup(Resource)
         try:
-            ds.post(newSoup)
+            ds.delete(newSoup)
             self.assertTrue(False) #only fails if it deletes non-existing soup
         except:
             self.assertTrue(True)
+
+    def test_change_inv(self):
+        """
+        Post-condition: we cant modify a soup not in the database
+        """
+        newSoup = new_entity_name("soup")
+        ms = ep.ChangeSoupInvName(Resource)
+        val = random.randint(0,100000)
+        try:
+            ms.put(newSoup, val)
+            self.assertTrue(False)
+        except:
+            self.assertTrue(True)
+        
             
     def test_add_user1(self):
         """
@@ -106,7 +122,7 @@ class EndpointTestCase(TestCase):
         newUser = new_entity_name("user")
         du = ep.DeleteUser(Resource)
         db.add_user(newUser)
-        du.post(newUser)
+        du.delete(newUser)
         users = db.get_users()
         self.assertNotIn(newUser, users)
         
@@ -117,7 +133,9 @@ class EndpointTestCase(TestCase):
         newUser = new_entity_name("user")
         du = ep.DeleteUser(Resource)
         try:
-            du.post(newUser)
+            du.delete(newUser)
             self.assertTrue(False)
         except:
             self.assertTrue(True)
+
+

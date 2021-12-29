@@ -102,15 +102,24 @@ class OUser(Resource):
         """
         return db.get_users()
 
-"""
-@api.route('/change_s_inv/<soupname>')
-class ChangeUserName(Resource):
+@api.route('/update_inventory/<soupname><inv>')
+class ChangeSoupInvName(Resource):
     def put(self, soupname, inv):
         ret = db.change_inv(soupname, inv)
         if ret == db.NOT_FOUND:
             raise (wz.NotFound(f"{soupname} not found."))
         else:
             return f"Inventory for {soupname} updated to {inv}."
+
+"""
+@api.route('/update_description/<soupname><desc>')
+class ChangeSoupDesc(Resource):
+    def put(self, soupname, desc):
+        ret = db.change_inv(soupname, desc)
+        if ret == db.NOT_FOUND:
+            raise (wz.NotFound(f"{soupname} not found."))
+        else:
+            return f"Description for {soupname} updated to {desc}."
 """
 
 """

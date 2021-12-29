@@ -110,15 +110,14 @@ def del_user(username):
         dbc.del_one(USERS, filters={USER_NM: username})
         return OK
 
-"""
-def change_inv(soupname, inv):
+
+def change_inv(soupname, val):
     # Change the inventory of a soup given by soupname
     if not soup_exists(soupname):
         return NOT_FOUND
     else:
-        dbc.update_one(SOUPS, filters={SOUP_NM: soupname}, inv)
+        dbc.update_one(SOUPS, filters={SOUP_NM: soupname}, update={"$set": {"Inventory": val}})
         return OK
-"""
  
 
 def change_user_username(username, new_username):

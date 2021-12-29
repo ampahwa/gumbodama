@@ -51,10 +51,13 @@ def del_one(collect_nm, filters={}):
     """
     return client[db_nm][collect_nm].delete_one(filters)
 
-"""
-def update_one(collect_nm, filters={}, inv):
-    return client[db_nm][collect_nm].update_one(filters, inv)
-"""
+
+def update_one(collect_nm, filters={}, update={}):
+
+    # Update inventory field of collection - right now specific for soups, 
+
+    return client[db_nm][collect_nm].update_one(filters, update)
+
 
 def fetch_all(collect_nm, key_nm):
     all_docs = {}
