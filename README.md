@@ -7,7 +7,7 @@ Delete user\
 List their soups\
 Add soup to sell\
 Purchase soup\
-Post Soup Review
+Post Soup Review (future)
  
 ## Design
 Use flask_restx to build an API server\
@@ -22,10 +22,11 @@ You can list all users with /user endpoint\
 You can get all the available soups by using the /soup endpoint\
 You can add a soup by using the /add_soup endpoint\
 You can delete a soup by using the /delete_soup endpoint\
-You can add a review for a soup with /post_review endpoint and providing a soup id (not added yet)
+You can modify soup inventory by using /update_inventory endpoint\
+You can add a review for a soup with /post_review endpoint and providing a soup id (future)
 
 ## Completed
-Six enpoints with tests\
+Seven enpoints with tests\
 Updated Kanban board\
 CI/CD deployment with Github actions\
 MongoDB set with remotel access on Heroku
