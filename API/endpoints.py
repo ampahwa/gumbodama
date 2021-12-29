@@ -52,6 +52,8 @@ class OSoup(Resource):
         This method returns all outbound soup.
         """
         return db.get_soup()
+    def delete(self):
+        pass
  
  
 @api.route('/add_soup/<soupname>')
