@@ -13,33 +13,26 @@ import db.data as db
 app = Flask(__name__)
 api = Api(app)
  
- 
+""" 
 @api.route('/hello')
 class HelloWorld(Resource):
-    """
-    The purpose of the HelloWorld class is to have a simple test to see if the
-    app is working at all.
-    """
+    #The purpose of the HelloWorld class is to have a simple test to see if the
+    #app is working at all.
     def get(self):
-        """
-        A trivial endpoint to see if the server is running.
-        It just answers with "hello world."
-        """
+        #A trivial endpoint to see if the server is running.
+        #It just answers with "hello world."
         return {'hello': 'world'}
  
  
 @api.route('/endpoints')
 class Endpoints(Resource):
-    """
-    This class will serve as live, fetchable documentation of what endpoints
-    are available in the system.
-    """
+    #This class will serve as live, fetchable documentation of what endpoints
+    #are available in the system
     def get(self):
-        """
-        The `get()` method will return a list of available endpoints.
-        """
+        #The `get()` method will return a list of available endpoints.
         endpoints = sorted(rule.rule for rule in api.app.url_map.iter_rules())
         return {"Available endpoints": endpoints}
+"""
  
  
 @api.route('/soup')
@@ -52,8 +45,6 @@ class OSoup(Resource):
         This method returns all outbound soup.
         """
         return db.get_soup()
-    def delete(self):
-        pass
  
  
 @api.route('/add_soup/<soupname>')
@@ -70,7 +61,7 @@ class AddSoup(Resource): # Supports adding soup
  
 @api.route('/delete_soup/<soupname>')
 class DeleteSoup(Resource):
-    def post(self, soupname):
+    def delete(self, soupname):
         ret = db.del_soup(soupname)
         if ret == db.NOT_FOUND:
             raise (wz.NotFound(f"Soup {soupname} not found."))
@@ -92,7 +83,7 @@ class AddUser(Resource): # Supports adding soup
  
 @api.route('/delete_user/<username>')
 class DeleteUser(Resource):
-    def post(self, username):
+    def delete(self, username):
         # This method deletes a room from the room db.
         ret = db.del_user(username)
         if ret == db.NOT_FOUND:
@@ -103,7 +94,7 @@ class DeleteUser(Resource):
 """
 @api.route('/change_username/<username>')
 class ChangeUserName(Resource):
-    def post(self, username, new_username):
+    def put(self, username, new_username):
         
         ret = db.change_user_username(username, new_username)
         if ret == db.NOT_FOUND:
