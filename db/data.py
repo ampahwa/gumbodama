@@ -109,8 +109,18 @@ def del_user(username):
     else:
         dbc.del_one(USERS, filters={USER_NM: username})
         return OK
+
+"""
+def change_inv(soupname, inv):
+    # Change the inventory of a soup given by soupname
+    if not soup_exists(soupname):
+        return NOT_FOUND
+    else:
+        dbc.update_one(SOUPS, filters={SOUP_NM: soupname}, inv)
+        return OK
+"""
  
- 
+
 def change_user_username(username, new_username):
     """
     change user's username to new username in db

@@ -91,18 +91,6 @@ class DeleteUser(Resource):
         else:
             return f"{username} deleted."
  
-"""
-@api.route('/change_username/<username>')
-class ChangeUserName(Resource):
-    def put(self, username, new_username):
-        
-        ret = db.change_user_username(username, new_username)
-        if ret == db.NOT_FOUND:
-            raise (wz.NotFound(f"User {username} not found."))
-        else:
-            return f"{username} deleted."
-"""
- 
 @api.route('/users')
 class OUser(Resource):
     """
@@ -113,3 +101,25 @@ class OUser(Resource):
         This method returns all outbound users.
         """
         return db.get_users()
+
+"""
+@api.route('/change_s_inv/<soupname>')
+class ChangeUserName(Resource):
+    def put(self, soupname, inv):
+        ret = db.change_inv(soupname, inv)
+        if ret == db.NOT_FOUND:
+            raise (wz.NotFound(f"{soupname} not found."))
+        else:
+            return f"Inventory for {soupname} updated to {inv}."
+"""
+
+"""
+@api.route('/change_username/<username>')
+class ChangeUserName(Resource):
+    def put(self, username, new_username):
+        ret = db.change_user_username(username, new_username)
+        if ret == db.NOT_FOUND:
+            raise (wz.NotFound(f"User {username} not found."))
+        else:
+            return f"{username} deleted."
+"""
